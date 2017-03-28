@@ -1,12 +1,12 @@
 server {
-    listen 80 default_server; # remove default server if not default
+    listen 80 default_server; # remove default_server if not default
     server_name example.com;
 
     return 301 https://$server_name$request_uri;
 }
 
 server {
-    listen 443 ssl http2 default_server;
+    listen 443 ssl http2 default_server; # remove default_server if not default
     include snippets/ssl-fexample.com.conf; # optional for https, needs setup
     include snippets/ssl-params.conf; # optional for http, needs setup
 
@@ -18,7 +18,7 @@ server {
         try_files $uri $uri/ /index.php?q=$uri&$args;
     }
 
-    location ~ /.well-known
+    location ~ /.well-known #used for hhtps, remove for http
     {
         allow all;
     }
